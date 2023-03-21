@@ -1,0 +1,36 @@
+# Project specific ignores
+.cache
+dist
+reports
+node_modules
+
+# CDK
+.cdk.staging
+cdk.out
+cdk.context.json
+deployment.result.json
+deploymentSummary.md
+remix.init/
+
+
+# Storybook
+storybook-static
+
+# Remix/Arc
+server/index.js.map
+server/index.js
+public/build
+
+# ARC
+sam.json
+sam.yaml
+.env
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# No IDE specific files should ever make it into the repo
+.idea
+.vscode

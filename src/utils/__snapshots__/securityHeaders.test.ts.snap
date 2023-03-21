@@ -1,0 +1,50 @@
+// Vitest Snapshot v1
+
+exports[`securityHeaders > sets the correct security headers 1`] = `
+Headers {
+  Symbol(map): {
+    "Content-Security-Policy": [
+      "script-src 'nonce-noncevalue' 'strict-dynamic'; object-src 'none'; base-uri 'none';",
+    ],
+    "Cross-Origin-Embedder-Policy": [
+      "same-origin",
+    ],
+    "Cross-Origin-Opener-Policy": [
+      "same-origin",
+    ],
+    "Cross-Origin-Resource-Policy": [
+      "same-origin",
+    ],
+    "Origin-Agent-Cluster": [
+      "?1",
+    ],
+    "Permissions-Policy": [
+      "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
+    ],
+    "Referrer-Policy": [
+      "origin-when-cross-origin",
+    ],
+    "Strict-Transport-Security": [
+      "max-age=31536000; includeSubDomains",
+    ],
+    "X-Content-Type-Options": [
+      "nosniff",
+    ],
+    "X-DNS-Prefetch-Control": [
+      "off",
+    ],
+    "X-Download-Options": [
+      "noopen",
+    ],
+    "X-Frame-Options": [
+      "SAMEORIGIN",
+    ],
+    "X-Permitted-Cross-Domain-Policies": [
+      "none",
+    ],
+    "X-XSS-Protection": [
+      "0",
+    ],
+  },
+}
+`;

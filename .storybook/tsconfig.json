@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["**/*"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "rootDir": "../",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["../src/*"],
+      "@test": ["../test"],
+      "@test/*": ["../test/*"],
+      "@styles": ["../src/styles/"],
+      "@styles/*": ["../src/styles/*"]
+    }
+  }
+}
