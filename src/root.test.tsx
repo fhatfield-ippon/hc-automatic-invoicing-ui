@@ -6,12 +6,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useChangeLanguage } from '~/hooks/useChangeLanguage';
 import { remixI18next } from '~/i18n';
 import { createUserSession } from '~/session.server';
-import splitClient from '~/split.server';
 import App, { handle, links, loader, meta } from './root';
 
 vi.mock('~/session.server');
 vi.mock('~/i18n');
-vi.mock('~/split.server');
 vi.mock('./styles/app.css', () => ({ default: 'app.css' }));
 vi.mock('./styles/dark.css', () => ({ default: 'dark.css' }));
 vi.mock('./styles/light.css', () => ({ default: 'light.css' }));
@@ -89,16 +87,8 @@ describe('The root module', () => {
         } as never
       });
       vi.mocked(remixI18next.getLocale).mockResolvedValue('en');
-      vi.mocked(splitClient.ready).mockResolvedValue();
-      vi.mocked(splitClient.track).mockReturnValue(true);
 
       vi.stubEnv('NODE_ENV', 'development');
-      vi.stubEnv('GOOGLE_ANALYTICS_ID', 'ga-id');
-      vi.stubEnv('HOTJAR_ID', 'a-hotjar-id');
-      vi.stubEnv('MIXPANEL_TOKEN', 'a-mixpanel-token');
-      vi.stubEnv('MIXPANEL_API', 'a-mixpanel-api');
-      vi.stubEnv('SPLIT_CLIENT_TOKEN', 'a-split-token');
-      vi.stubEnv('COOKIEYES_TOKEN', 'a-cookieyes-token');
 
     });
 
@@ -109,13 +99,7 @@ describe('The root module', () => {
       expect(data).toMatchInlineSnapshot(`
         {
           "appConfig": {
-            "cookieYesToken": "a-cookieyes-token",
-            "googleAnalyticsId": "ga-id",
-            "hotjarId": "a-hotjar-id",
             "isProduction": false,
-            "mixpanelApi": "a-mixpanel-api",
-            "mixpanelToken": "a-mixpanel-token",
-            "splitToken": "a-split-token",
             "version": "0.0.0-dev",
             "visitorId": "a-visitorId",
           },
@@ -138,13 +122,7 @@ describe('The root module', () => {
       expect(data).toMatchInlineSnapshot(`
         {
           "appConfig": {
-            "cookieYesToken": "a-cookieyes-token",
-            "googleAnalyticsId": "ga-id",
-            "hotjarId": "a-hotjar-id",
             "isProduction": true,
-            "mixpanelApi": "a-mixpanel-api",
-            "mixpanelToken": "a-mixpanel-token",
-            "splitToken": "a-split-token",
             "version": "0.0.0-dev",
             "visitorId": "a-visitorId",
           },
@@ -159,22 +137,14 @@ describe('The root module', () => {
 
       expect(createUserSession).toHaveBeenCalledWith(request);
       expect(remixI18next.getLocale).toHaveBeenCalledWith(request);
-      expect(splitClient.ready).toHaveBeenCalled();
-      expect(splitClient.track).toHaveBeenCalledWith('a-visitorId', 'anonymous', 'page_view');
 
     });
   });
 
   describe('when rendering the app', () => {
     const appConfig: AppConfig = {
-      hotjarId: 'a-hotjar-id',
-      googleAnalyticsId: 'ga-id',
-      mixpanelToken: 'a-mixpanel-token',
       visitorId: 'a-visitor-id',
       isProduction: true,
-      mixpanelApi: 'a-mixpanel-api',
-      splitToken: 'a-split-token',
-      cookieYesToken: 'a-cookieyes-token',
       version: '0.0.0-dev',
       sentryDsn: 'a-sentry-dsn'
     };

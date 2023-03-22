@@ -2,7 +2,6 @@
 declare global {
 
   interface AppConfig {
-    splitToken: string;
     isProduction: boolean;
     visitorId: string;
     version: string;
@@ -22,7 +21,6 @@ declare global {
       AUTH0_DOMAIN: string;
       NODE_ENV: string;
       SESSION_SECRET: string | undefined
-      SPLIT_SERVER_TOKEN: string;
       I18N_DEBUG: string;
       SENTRY_DSN: string;
     }
